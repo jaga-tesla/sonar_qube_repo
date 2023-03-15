@@ -1,0 +1,15 @@
+name: SonarQube
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  run-sonarqube:
+    runs-on: ubuntu-latest
+    steps:
+    - name: SonarQube Scan
+      uses: monstar-lab-oss/sonarqube-github-action@v1.0.1
+      with:
+        url: ${{ secrets.http://192.168.2.21:9000 }}
+        token: ${{ secrets.sqp_6a76225ae41fe8979dd0bbb17dd09c07ed58600f }}
