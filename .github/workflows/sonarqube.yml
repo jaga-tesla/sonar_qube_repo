@@ -1,26 +1,15 @@
-name: Build
+name: SonarQube
 
 on:
   push:
-    branches:
-      - main
-
+    branches: [ master ]
 
 jobs:
-  build:
-    name: Build
+  run-sonarqube:
     runs-on: ubuntu-latest
     steps:
-      - uses: monstar-lab-oss/sonarqube-github-action@v1.0.1
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-      - uses: sonarsource/sonarqube-scan-action@master
-        env:
-          SONAR_TOKEN: ${{ secrets.sqp_6a76225ae41fe8979dd0bbb17dd09c07ed58600f }}
-          SONAR_HOST_URL: ${{ secrets.http://192.168.2.21:9000 }}
-      # If you wish to fail your job when the Quality Gate is red, uncomment the
-      # following lines. This would typically be used to fail a deployment.
-      # - uses: sonarsource/sonarqube-quality-gate-action@master
-      #   timeout-minutes: 5
-      #   env:
-      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    - name: SonarQube Scan
+      uses: monstar-lab-oss/sonarqube-github-action@v1.0.1
+      with:
+        url: ${{ secrets.secrets.SONAR_TOKEN }}
+        token: ${{ secrets.secrets.SONAR_HOST_URL}}
